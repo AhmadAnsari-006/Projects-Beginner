@@ -2,18 +2,297 @@
 <html>
   <head>
     <title>YouTube.com Clone</title>
+    <div><!--This is font link-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </div>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>/*This is general css for all*/
+        p{
+          margin-top:0;
+          margin-bottom:0;
+        }        
+    </style>
 
-    <link rel="stylesheet" href="youtube-styles/general.css">
+    <style>/*This is header css of html*/
+        .header{
+          height:55px;
+          display:flex;
+          flex-direction:row;
+          justify-content:space-between;
+          position:fixed;
+          top:0;
+          left:0;
+          right:0;
+          background-color: white;
+          border-bottom-width:1px;
+          border-bottom-style:solid;
+          border-bottom-color:rgb(225,225,225);
+          z-index:100;
+        }
+
+        .left_section{
+        display:flex;
+        align-items: center;
+        }
+        .hamburger_menu{
+        height:20px;
+        margin-left:20px;
+        margin-right:20px;
+        }
+        .youtube_logo{
+        height:20px;
+        }
+
+        .middle_section{
+        flex:1;
+        margin-left:70px;
+        margin-right:35px;
+        max-width:500px;
+        display:flex;
+        align-items: center;
+        }
+        .search_bar{
+        flex:1;
+        height:36px;
+        padding-left:10px;
+        font-size:16px;
+        /*border-width:1px;
+        border-style:solid;
+        border-color: rgb(192,192,192);*/
+        border:1px solid rgb(192,192,192);
+        border-radius:2px;
+        box-shadow: inset 1px 2px 3px rgba(0,0,0,0.05);
+        width:0;
+        }
+        .search_bar::placeholder{
+        font-size:16px;
+        }
+
+        .search_button{
+        height:40px;
+        width:66px;
+        background-color: rgb(240,240,240);
+        border-width:1px;
+        border-style:solid;
+        border-color: rgb(192,192,192);
+        margin-left:-1px;
+        margin-right:10px;
+        ;}
+
+
+        .search_button,
+        .voice_search_button,
+        .upload_icon_container,
+        .youtube_app_icon_container,
+        .notification_icon_container{
+        position:relative;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+
+        .search_button .tooltip,
+        .voice_search_button .tooltip,
+        .upload_icon_container .tooltip,
+        .youtube_app_icon_container .tooltip,
+        .notification_icon_container .tooltip{ 
+        position:absolute;
+        background-color: grey;
+        color:white;
+        padding-top:4px;
+        padding-bottom: 4px;
+        padding-left:8px;
+        padding-right:8px;
+        border-radius:2px;
+        font-size:12px;
+        bottom:-30px;
+        opacity:0;
+        transition: opacity 0.15s;
+        pointer-events:none;
+        white-space: nowrap;
+        }
+        .search_button:hover .tooltip,
+        .voice_search_button:hover .tooltip,
+        .upload_icon_container:hover .tooltip,
+        .youtube_app_icon_container:hover .tooltip,
+        .notification_icon_container:hover .tooltip{
+        opacity:1;
+        }
+
+
+        .search_icon{
+        height:24px;
+        }
+
+        .voice_search_button{
+        height:40px;
+        width:40px;
+        border-radius:20px;
+        border:none;
+        background-color: rgb(245,245,245);
+        }
+
+        .voice_search_icon{
+        height:24px;
+        }
+
+
+        .right_section{
+        width:180px;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right:20px;
+        flex-shrink:0;
+        }
+        .upload_icon{
+        height:24px; 
+        }
+        .youtube_app_icon{
+        height:24px;
+
+        }
+        .notification_icon{
+        height:24px;
+        }
+        .notification_icon_container{
+        position:relative;
+        }
+        .notification_count{
+        position:absolute;
+        top:-2px;
+        right:-4px;
+        background-color: rgb(200,0,0 );
+        color:white;
+        font-family:Robot,Arial;
+        font-size:11px;
+        padding:2px 5px;
+        border-radius: 10px;;
+        }
+        .current_user_picture{
+        height:32px;
+        border-radius:16px;
+        }
+    </style>
+
+    <style>/*This is sidebar css of html*/
+      .sidebar{
+      position:fixed;
+      left:0px;
+      bottom:0px;
+      top:55px;
+      background-color:white;
+      width:72px;
+      }
+      .sidebar_link{
+      height:74px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index:200;
+      padding-top:5px;
+      }
+      .sidebar_link:hover{
+      background-color: rgb(235,235,235);
+      cursor:pointer;}
+      .sidebar_link img{
+      height:24px;
+      margin-bottom:4px;
+
+      }
+      .sidebar_link div{
+      font-size:10px;
+      }
+    </style>
+
+    <style>/*This is video css of html*/
+        .thumbnail{
+        width:100%;
+        }
+
+        .video_title{
+        margin-top: 0px;
+        font-size:14px;
+        font-weight:500;
+        line-height: 20px;
+        margin-bottom:10px;
+        }
+
+        .video_info_grid{
+        display:grid;
+        grid-template-columns: 50px 1fr;
+        }
+
+        .profile_picture{
+        width: 36px;
+        border-radius: 50px;
+        }
+        .thumbnail_row{
+        margin-bottom:8px;
+        position:relative;
+        }
+        .video_author,
+        .video_stats{
+        font-size: 12px;
+        color:rgb(96,96,96);
+        }
+        .video_author{
+        margin-bottom:4px;
+        }
+        .video_grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 16px;
+        row-gap: 30px;
+        }
+
+        @media (min-width:1000px){
+        .video_grid{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+        }
+        @media(min-width:751px) and (max-width:999px){
+        .video_grid{
+        grid-template-columns: 1fr 1fr 1fr;
+        }
+        }
+        @media (max-width:750px){
+        .video_grid{
+        grid-template-columns: 1fr 1fr;
+        }
+        }
+
+        .video_time{
+        font-size:12px;
+        background-color:black;
+        color:white;
+        position:absolute;
+        bottom:10px;
+        right:8px;
+        font-weight:500;
+        padding:4px;
+        border-radius:2px;
+        }
+    </style>
+    
+    <!--<link rel="stylesheet" href="youtube-styles/general.css">
     <link rel="stylesheet" href="youtube-styles/video.css">
     <link rel="stylesheet" href="youtube-styles/header.css">
-    <link rel="stylesheet" href="youtube-styles/sidebar.css">
+    <link rel="stylesheet" href="youtube-styles/sidebar.css">-->
   </head>
 
-  <body>
+  <body style="
+    font-family: Roboto,Arial;
+    margin:0;
+    padding-top:80px;
+    padding-left:96px;
+    padding-right:24px;
+    background-color: rgb(248,248,248);
+        ">
     <header class="header">
       <div class="left_section"> 
         <img class="hamburger_menu" src="icons/hamburger-menu.svg">
@@ -79,6 +358,7 @@
         <div>Library</div>
       </div>
     </nav>
+
     <main>
       <section class="video_grid">
 
