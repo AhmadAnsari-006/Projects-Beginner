@@ -1,0 +1,9 @@
+.js-sidebar-active{
+  opacity: 1;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  top:55px;
+  width:72px;
+  background-color: rgb(233, 233, 233);
+}
