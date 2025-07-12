@@ -6,4 +6,5 @@
   top:55px;
   width:72px;
   background-color: rgb(233, 233, 233);
+  transition: opacity 0.16s;
 }
