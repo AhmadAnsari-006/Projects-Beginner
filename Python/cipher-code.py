@@ -1,4 +1,3 @@
-a=str(input("Do you want to encrypt or decrypt ? "))
 def vigenere(message, key, direction=1):
     key_index = 0
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -15,7 +14,7 @@ def vigenere(message, key, direction=1):
             # Define the offset and the encrypted/decrypted letter
             offset = alphabet.index(key_char)
             index = alphabet.find(char)
-            new_index = (index + offset*direction) % len(alphabet)
+            new_index = (index + offset * direction) % len(alphabet)
             final_message += alphabet[new_index]
     
     return final_message
@@ -24,19 +23,24 @@ def encrypt(message, key):
 def decrypt(message, key):
     return vigenere(message, key, -1)
 
-if a.lower() == 'encrypt':
-  encrypted_text = str(input("Enter unencrypted message: "))
-  custom_key = str(input("Enter encryption key: "))
-  encryption = encrypt(encrypted_text, custom_key)
-  print(f'\nEncrypted text: {encrypted_text}')
-  print(f'Key: {custom_key}')
-  print(f'\nEncrypted text: {encryption}\n')
-elif a.lower() == 'decrypt':
-  encrypted_text = str(input("Enter encrypted message: "))
-  custom_key = str(input("Enter encryption key: "))
-  decryption = decrypt(encrypted_text, custom_key)
-  print(f'\nEncrypted text: {encrypted_text}')
-  print(f'Key: {custom_key}')
-  print(f'\nDecrypted text: {decryption}\n')
-else: 
-  print("Please check what you want to do!")
+while True:
+    a = str(input("Do you want to encrypt, decrypt, or exit? "))
+    if a.lower() == 'encrypt':#encryption work is being done
+        encrypted_text = str(input("Enter unencrypted message: "))
+        custom_key = str(input("Enter encryption key: "))
+        encryption = encrypt(encrypted_text, custom_key)
+        print(f'\nEncrypted text: {encrypted_text}')
+        print(f'Key: {custom_key}')
+        print(f'\nEncrypted text: {encryption}\n')
+    elif a.lower() == 'decrypt':#decrpytion work is being done
+        encrypted_text = str(input("Enter encrypted message: "))
+        custom_key = str(input("Enter encryption key: "))
+        decryption = decrypt(encrypted_text, custom_key)
+        print(f'\nEncrypted text: {encrypted_text}')
+        print(f'Key: {custom_key}')
+        print(f'\nDecrypted text: {decryption}\n')
+    elif a.lower() == 'exit':
+        print("Exiting the program ......")
+        break
+    else: 
+        print("Please check what you want to do!")
