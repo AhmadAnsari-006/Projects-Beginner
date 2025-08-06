@@ -1,3 +1,4 @@
+import time 
 def vigenere(message, key, direction=1):
     key_index = 0
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -41,6 +42,8 @@ while True:
         print(f'\nDecrypted text: {decryption}\n')
     elif a.lower() == 'exit':
         print("Exiting the program ......")
+        time.sleep(3)
+        print("Exited the program successfully!")
         break
     else: 
         print("Please check what you want to do!")
