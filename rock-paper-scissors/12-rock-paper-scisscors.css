@@ -62,3 +62,11 @@ body,
 .css-confirmation-button:active{
   transition: background-color 0.2s;
 }
+.game-container,.result,.end-buttons{
+  width: 50%; /* Or max-width: fit-content; */
+  margin-left: auto;
+  margin-right: auto
+}
+.result{
+  font-size: 40px;
+}
